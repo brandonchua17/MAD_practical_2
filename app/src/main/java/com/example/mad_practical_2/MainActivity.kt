@@ -20,9 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         binding.myName = myName
-
         binding.doneButton.setOnClickListener {
             addNickname(it)
         }
@@ -36,9 +34,13 @@ class MainActivity : AppCompatActivity() {
             doneButton.visibility = View.GONE
             nicknameText.visibility = View.VISIBLE
         }
+
+        // Hide the keyboard.
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    private fun updateNickname (view: View) {
+    /*private fun updateNickname (view: View) {
         val editText = findViewById<EditText>(R.id.nickname_edit)
         val doneButton = findViewById<Button>(R.id.done_button)
 
@@ -52,5 +54,5 @@ class MainActivity : AppCompatActivity() {
         // Show the keyboard.
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editText, 0)
-    }
+    }*/
 }
